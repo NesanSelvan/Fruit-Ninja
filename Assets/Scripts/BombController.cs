@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BombController : MonoBehaviour
+{
+    private GameManager m_gm;
+
+    private void Awake()
+    {
+        m_gm = GetComponent<GameManager>();
+    }
+    // Start is called before the first frame update
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Blade b = collision.GetComponent<Blade>();
+        if (!b)
+        {
+           
+            return;
+        }
+        FindObjectOfType<GameManager>().playbombslicedsound();
+        FindObjectOfType<GameManager>().OnBombHit();
+    }
+}
